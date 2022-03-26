@@ -61,11 +61,11 @@ def display(comb):
     result += f"| ––– | ––– | " + i*"–" + " | \n"
     result += f"|  T  |  T  | " + spaceNum*" " + \
         f" {comb[0]}" + spaceNum*" " + " | \n"
-    result += f"|  T  |  T  | " + spaceNum*" " + \
+    result += f"|  T  |  F  | " + spaceNum*" " + \
         f" {comb[1]}" + spaceNum*" " + " | \n"
-    result += f"|  T  |  T  | " + spaceNum*" " + \
+    result += f"|  F  |  T  | " + spaceNum*" " + \
         f" {comb[2]}" + spaceNum*" " + " | \n"
-    result += f"|  T  |  T  | " + spaceNum*" " + \
+    result += f"|  F  |  F  | " + spaceNum*" " + \
         f" {comb[3]}" + spaceNum*" " + " | \n"
 
     return result
