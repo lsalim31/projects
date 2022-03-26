@@ -37,7 +37,7 @@ where **TFTFFTTT** is the desired output for the unknown sentence with 3 proposi
 (¬p1 ∨ ¬p2 ∨ p3) ∧ (¬p1 ∨ p2 ∨ p3) ∧ (p1 ∨ ¬p2 ∨ ¬p3)
 ```
 which correclty matches the truth table. One can awalys check the answers using an [online truth table calculator](https://web.stanford.edu/class/cs103/tools/truth-table-tool/) (bear in mind that the calculator from this website uses a different convention: 
-it starts the table with _falses_, not with _trues_, so the output should be inverted - other websites use the common convention but I though this one from standford was the best).
+it starts the table with _falses_, not with _trues_, so the output should be inverted - other websites use the common convention but I thought this one from standford was the best).
 There is also the option (in 2 dimensions only) to include
 a **--display** when running the program. 
 ```
