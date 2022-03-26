@@ -14,7 +14,9 @@ def main(argv):
     if len(argv) > 2:
         optional = argv[2]
         if optional == "--display":
+            print()
             print(display(comb))
+            return
     print(getSentence([char for char in argv[1]]))
 
 if __name__ == "__main__":
