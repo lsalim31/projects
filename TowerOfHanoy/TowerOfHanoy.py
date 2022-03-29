@@ -14,6 +14,7 @@ def output(n):
     sequence = f(n, 1, 3)
     T = Tower([i for i in range(n, 0, -1)], [], [])
     print(T)
+    print()
     for pair in sequence:
         print("Move top disk from rod " + str(pair[0]) + " to rod " + str(pair[1]) + ":")
         myTower = [T.rod1, T.rod2, T.rod3]
@@ -21,5 +22,6 @@ def output(n):
         myTower[pair[1] - 1].append(el)
         T = Tower(myTower[0], myTower[1], myTower[2])
         print(T)
+        print()
         
     print("Number of moves: " + str(len(sequence))) # This should always be 
