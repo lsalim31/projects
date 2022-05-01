@@ -1,21 +1,21 @@
 # The problem. 
 Given the truth table below, what is the sentence that gives us the desired output in the last column?
-```
+
 |  p  |  q  |  ?  |  
-| --- | --- | --- |  
+| :---: | :---: | :---: |  
 |  T  |  T  |  T  |  
 |  T  |  F  |  T  |  
 |  F  |  T  |  F  |  
 |  F  |  F  |  T  |  
-```
+
 For this example, we can easily see that the sentence **(p ∨ ¬q)** staisifies our needs. In two dimenions (two propositional variables),
 there are 16 possibles outcomes (i.e., one can form 16 different propositional sentences when working with two variables). This does not seem challenging enough, but if we generalize this to n dimensions, the problem becomes extremely difficult for us (with 2^(2^n) possible outcomes) and that is where this program comes in. 
 
 ## The question.
 Given a general truth table output, for intance (say in 3 dimensions):
-```
+
 |  p1  |  p2  |  p3  |  ?  |
-| ---- | ---- | ---- | --- |
+| :----: | :----: | :----: | :---: |
 |  T   |  T   |  T   |  T  |
 |  T   |  T   |  F   |  F  |
 |  T   |  F   |  T   |  T  |
@@ -24,7 +24,7 @@ Given a general truth table output, for intance (say in 3 dimensions):
 |  F   |  T   |  F   |  T  |
 |  F   |  F   |  T   |  T  |
 |  F   |  F   |  F   |  T  |
-```
+
 what is the propositional sentence that would gives us the output in the last column?
 
 ## The answer.
