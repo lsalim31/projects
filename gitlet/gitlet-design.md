@@ -3,64 +3,77 @@ author: Lucas Salim
 
 ## 1. Classes and Data Structures
 
-###Main
+### Main
 The Main is the entry point of the program. After compiling, one can run
 `java gitlet.Main init` to initialize our version control system. The code
 consists of a switch case checking whether the first argument matches one of
-the known commands. Of course, this only happens after asserting the the first
-argument is not null.
+the known commands. If that matches, we proceed to the logic of a given argument.
 
-###Blob
+### Blob
 This class is a representation of the content of a file. Here we can store the content
 of the file in some other place (like another file). 
-#### Fields:
-* private String _content: the string used to store the content of Blob.
 
-###tree
-This class is a representation of a mapping between a file name and its Blob (content).
-It uses the HashMap data structure to make such mapping. 
 #### Fields:
-* public HashMap<String, Blob> myFiles: data structure used to store a file name and its content.
+* private String __contentAsString_: the string used to store the content of Blob.
+* private byte[] __content_: an arrays used to store the content of Blob.
 
-###Commit
+### Tree
+This class is a representation of a mapping between a file name and its UID (a unique
+value calculated through SHA-1). It uses the HashMap data structure to make such mapping. 
+
+#### Fields:
+* public HashMap<String, String> _myFiles_: data structure used to store a file name and its UID.
+
+### Commit
 This class is a representation of a commit. A commit consists of a combinations of 
 log messages, other metadata (commit date, author, etc.), a reference to a tree, 
 and references to parent commits.
 
 #### Fields:
-  * private String _message: a message of a given commit. 
-  * private String _timestamp: stores the date/time of commit.
-  * private tree _tree: stores the tree of a commit.
-  * private String _parent: points to the commit before this.
-  * private Date _date: store the current date of commit.
+  * private String __message_: a message of a given commit. 
+  * private tree __TreeADD_: stores the add tree of a commit.
+  * private tree __TreeREMOVE_: stores the remove tree of a commit.
+  * private String __parent_: stores the previous commit (parent).
+  * private Date __date_: store the current date of commit.
+  * private static final int _SHORTUID_: stores the short UID value.
+  * private static final int _YEAR_: stores our initial year.
 
-###Logic
-This class is where the Logic of our program is written.
 
-###FileUtils
-This is a class responsible for methods dealing with Files.
+### Logic
+A class for all the logic in our gitlet system. Here we see methods 
+for all the commands arguments in the Main program.
 
-###Finder
+### FileUtils
+This is a class responsible for methods dealing with Files. Here we have methods to 
+clean a directory, create a file, delete a file, etc.
+
+### Finder
 This is a class responsible for storing all the files and directories we will be using.
+
 #### Fields:
-* public static final File CWD: the current working directory
-* public static final File GITLET_FOLDER: a hidden folder that indicates intialization
-* public static final File COMMIT_FOLDER: the folder to store the committing tree
-* public static final File HEADS_FOLDER: a folder with the unique file that points to the last commit
-* public static final File STAGING_AREA: a folder for the staging area
-* public static final File ADD: a file that stores the trees to be added from the staging area 
-* public static final File REMOVE:  file that stores the trees from the staging area that are to be removed
-* public static final File BLOBS_FOLDER: a folder for our Blobs
-* public static final File[] DIRECTORIES: a list containing some directories above
-* public static final File[] FILES: a list containing some files above
+* public static final File _CWD_: the current working directory
+* public static final File _GITLET_FOLDER_: a hidden folder that indicates intialization
+* public static final File _COMMIT_FOLDER_: the folder to store the committing tree
+* public static final File _BRANCHES_FOLDER_: the folder to store all our branches.
+* public static final File _CURRENT_: the folder to store the current branch.
+* public static final File _MASTER_: the folder to store master branch.
+* ublic static final File _MASTER_POINTER_: initially, _CURRENT_ will orignially point to master.
+* public static final File _STAGING_AREA_: a folder for the staging area
+* public static final File _ADD_: a file that stores the trees to be added from the staging area 
+* public static final File _REMOVE_:  file that stores the trees from the staging area that are to be removed
+* public static final File _BLOBS_FOLDER_: a folder for our Blobs
+* public static final File[] _DIRECTORIES_: a list containing some directories above
+* public static final File[] _FILES_: a list containing some files above
+
 
 ## 2. Algorithms
+A brief discription of the most important methods for each class.
 
-###Blob.java
+### Blob.java
 1. Blob(File file): this creates a Blob for a given File FILE. 
 2. storeBlob(): this stores our instance in file with name consisting of the hash code (sha-1) of our Blob. The file is stored in directory BLOBS_FOLDER and contains _content.
 
-###tree
+### tree
 1. tree(): this creates a tree object. It creates a new HashMap for _myFiles.
 2. add(File file): Put File FILE inside our _myFiles.
 3. contains(File file): returns true if and only if _myFiles contains FILE.
@@ -68,7 +81,7 @@ This is a class responsible for storing all the files and directories we will be
 5. putAll(tree tree): combine this tree with tree TREE. 
 
 
-###Commit
+### Commit
 1. Commit(): this creates the initial commit. It assigns its fields with the corresponding value for a initial commit and stores the commit in COMMITS_FOLDER.
 2. Commit(String message, tree tree): create new commit with a given message and some tree TREE. 
 3. Commit clone(Commit c): Returns a copy of commit C. 
@@ -76,13 +89,13 @@ This is a class responsible for storing all the files and directories we will be
 5. clearStagingArea(): clear the STAGING directory by emptying the ADD and REMOVE files. 
 6. storeCommit(): stores our commit in COMMIT_FOLDER. It also sets the HEADER pointer; that is: it stores the ID (sha-1 hash) of this commit in the HEADS folder.
 
-###Logic
+### Logic
 1. init(): creates a new Gitlet version-control system. The method creates the hidden GITLET_FOLDER and the required directories and files. It also creates a new commit object. 
 2. add(String[] args): Add the arguments (files) to the Staging Area (STAGING_AREA) if and only if the files were new or modified.
 3. fileChanged(File file): returns true if and only if File FILE was modified (that is; the previous commit have a different copy of FILE or FILE is new).
 4. commit(String[] args): Saves the files in the STAGING_AREA to a new commit with some message that is represented by ARGS[1]. 
 
-###FileUtils
+### FileUtils
 1. createFile(File file): Creates the file for a given FILE.
 2. createFiles(File... files): Creates the directory for a given FILE (that represents some directory). No error if already exists.
 3. createDirectory(File file, String message): Creates the directory for a given FILE (that represents some directory). Throw GitletException for a given MESSAGE.
@@ -92,7 +105,6 @@ This is a class responsible for storing all the files and directories we will be
 
 
 ## 3. Persistence
-
 Let us start by running`java gitlet.Main init`. After that, our program will create a hidden file called .gitlet that has the following subdirectories:
 * COMMITS
 * HEADS
