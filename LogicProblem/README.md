@@ -9,7 +9,7 @@ Given the truth table below, what is the sentence that gives us the desired outp
 |  F  |  F  |  T  |  
 
 For this example, we can easily see that the sentence **(p ∨ ¬q)** staisifies our needs. In two dimenions (two propositional variables),
-there are 16 possibles outcomes (i.e., one can form 16 different propositional sentences when working with two variables). This does not seem challenging enough, but if we generalize this to n dimensions, the problem becomes extremely difficult for us (with 2^(2^n) possible outcomes) and that is where this program comes in. 
+there are 16 possibles outcomes (i.e., one can form 16 different propositional sentences when working with two variables). This does not seem challenging enough, but if we generalize this to n dimensions, the problem becomes extremely difficult for us (with 2^(2^n) possible outcomes) and that is where this program comes in. The mathematical perspective can be seen on [compoundProp3.pdf](/compoundProp3.pdf). 
 
 ## The question.
 Given a general truth table output, for intance (say in 3 dimensions):
